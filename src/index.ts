@@ -3,6 +3,7 @@ import { RowDataPacket } from 'mysql2';
 import pool from './config/database.js';
 import { findUserByEmail, getUser } from './controllers/userController.js';
 import { userRoute } from './routes/userRoute.js';
+import { profileRoute } from './routes/profileRoute.js';
 
 const app = express();
 const PORT = 3330;
@@ -23,6 +24,7 @@ app.get("/", async (_, res) => {
 
 app.use(express.json());
 app.use("/api/user", userRoute);
+app.use("/api/profile", profileRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

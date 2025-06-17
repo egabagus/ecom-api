@@ -12,6 +12,7 @@ model User {
   name      String
   email     String        @unique
   password  String
+  profile   Profile?
   created_at  DateTime?    
   updated_at  DateTime?
   deleted_at  DateTime?
@@ -42,4 +43,22 @@ model Gallery {
   updated_at  DateTime?
   deleted_at  DateTime?
   @@map("galleries")
+}
+
+model Profile {
+  id          Int           @id @default(autoincrement())
+  user_id     Int           @unique
+  user        User          @relation(fields: [user_id], references: [id])
+  photo       String?
+  first_name  String?
+  last_name   String?
+  age         Int?
+  address     String?
+  date_birth  DateTime?
+  status      String?
+  is_active   Boolean       @default(true)
+  created_at  DateTime?
+  updated_at  DateTime?
+  deleted_at  DateTime?
+  @@map("profiles")
 }
